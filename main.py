@@ -12,18 +12,12 @@ connection = sqlite3.connect('baze.db')
 cursor = connection.cursor()
 
 # Создаем таблицу Users
-cursor.execute('''
-CREATE TABLE IF NOT EXISTS Users (
-id INTEGER,
-username TEXT,
-gettime TEXT,
-stande TEXT, 
-description TEXT, 
-keywords TEXT, 
-des
-)
-''')
-
+cursor.execute("""CREATE TABLE IF NOT EXISTS users(
+   userid INT PRIMARY KEY,
+   fname TEXT,
+   lname TEXT,
+   gender TEXT);
+""")
 # Сохраняем изменения и закрываем соединение
 connection.commit()
 connection.close()
@@ -31,7 +25,17 @@ connection.close()
 
 @app.route('/')
 def main():
-    return render_template("index.html")
+    return render_template("index.html", stend="1")
+
+@app.route('/reg', methods=['GET', 'POST'])
+def registartion():
+    name = request.form['name']
+    password = request.form['password']
+    stend = request.form['stend_num']
+    print(name, password, stend)
+
+    return render_template('index.html', stend="1")
+
 
 
 
