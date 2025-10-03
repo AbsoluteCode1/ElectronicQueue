@@ -1,0 +1,166 @@
+@font-face {
+    font-family: 'Tinkoff Sans';
+    src: url('font/TinkoffSans-Bold.eot');
+    src: local('font/Tinkoff Sans Bold'), local('TinkoffSans-Bold'),
+        url('font/TinkoffSans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('font/TinkoffSans-Bold.woff2') format('woff2'),
+        url('font/TinkoffSans-Bold.woff') format('woff'),
+        url('font/TinkoffSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tinkoff Sans';
+    src: url('font/TinkoffSans-Medium.eot');
+    src: local('font/Tinkoff Sans Medium'), local('TinkoffSans-Medium'),
+        url('font/TinkoffSans-Medium.eot?#iefix') format('embedded-opentype'),
+        url('font/TinkoffSans-Medium.woff2') format('woff2'),
+        url('font/TinkoffSans-Medium.woff') format('woff'),
+        url('font/TinkoffSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tinkoff Sans';
+    src: url('font/TinkoffSans-Regular.eot');
+    src: local('font/Tinkoff Sans Regular'), local('TinkoffSans-Regular'),
+        url('font/TinkoffSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('font/TinkoffSans-Regular.woff2') format('woff2'),
+        url('font/TinkoffSans-Regular.woff') format('woff'),
+        url('font/TinkoffSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+html{
+    font-family: 'Tinkoff Sans', sans-serif;
+}
+.table {
+    display: table;
+    width: 90%;
+    margin: auto;
+    border-spacing: 15px; 
+    border-collapse: separate; 
+  }
+  
+  .table-row {
+    display: table-row;
+  }
+  
+  .table-cell {
+    display: table-cell;
+    padding: 2%;
+    background-image: linear-gradient(to bottom right,#fcde30, #fde47d);
+    border-radius: 8px;
+  }
+
+  
+  @media (max-width: 768px) {
+      .table {
+          width: 100%;
+          border-spacing: 8px;
+      }
+      
+      .table-cell {
+          padding: 4%;
+          font-size: 14px;
+      }
+  }
+
+  @media (max-width: 480px) {
+      .table {
+          border-spacing: 5px;
+      }
+      
+      .table-cell {
+          padding: 3%;
+          font-size: 12px;
+      }
+  }
+
+  .table-cell {
+    position: relative; 
+    text-align: center; 
+}
+
+.adaptive-image {
+    max-width: 23%;
+    max-height: 23%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block; 
+    margin: 0 auto; 
+}
+
+.large-text {
+    font-size: clamp(24px, 5vw, 50pt);
+    margin: 20px 0;
+    text-align: center;
+}
+
+.table-cell {
+    position: relative;
+    overflow: hidden; /* скрывает кнопку за пределами */
+    transition: all 0.3s ease;
+}
+
+.fly-button {
+    position: absolute;
+    font-family: 'Tinkoff Sans', sans-serif;
+    left: -1000%; /* скрыта слева */
+    transform: translateY(-50%);
+    background:  white;
+    color: black;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: left 0.3s ease;
+    white-space: nowrap;
+    z-index: 10;
+    font-size: clamp(12px, 2.5vw, 25pt);
+    text-align: center;
+}
+
+.table-cell:hover .fly-button {
+    left: 10px;
+}
+
+.table-cell:hover {
+    padding: 120px;
+}
+
+/*Заголовок окна*/
+.horizontal-container {
+    margin: auto;
+    width: 90%; 
+    max-width: 1200px; 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px; 
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.item_horizontal-container{
+    flex-shrink: 0;
+}
+
+.horizontal-container .adaptive-image {
+    max-width: 200px;
+    width: auto;
+    height: auto;
+}
+
+.horizontal-container .large-text {
+    font-size: clamp(20px, 4vw, 40px);
+    margin: 0;
+    white-space: nowrap;
+}
