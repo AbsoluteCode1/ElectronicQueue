@@ -40,6 +40,9 @@
 html{
     font-family: 'Tinkoff Sans', sans-serif;
 }
+body{
+    padding-top: 80px;
+}
 .stands-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(520px, 1fr)); 
@@ -68,7 +71,7 @@ html{
 
 .large-text {
     font-size: clamp(18px, 3vw, 28px);
-    margin: 15px 0;
+    margin: 20px 0;
 }
 
 .fly-button {
@@ -85,7 +88,7 @@ html{
 /* --- Записаться — выезжает слева --- */
 .recording {
     color: #13824B;
-    top: 70%;
+    top: 75%;
     left: -100%;                /* спрятана слева */
     transform: translateY(-50%);
 }
@@ -97,7 +100,7 @@ html{
 /* --- Отказаться — выезжает справа --- */
 .cancel {
     color: #ec6161;             /* мягкий красный (можно заменить на #e57373 для более светлого) */
-    top: 70%;
+    top: 75%;
     right: -100%;               /* спрятана справа */
     transform: translateY(-50%);
 }
@@ -127,61 +130,46 @@ html{
 }
 
 /*Заголовок окна*/
-.header-container {
+.top-fixed {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+
     display: flex;
+    flex-direction: column;   /* лого → заголовок → поиск */
     align-items: center;
-    justify-content: center; 
-    width: 100%; 
-    gap:20px;    
-    padding: 20px 0px;
-    background: linear-gradient(90deg, #fcde30, #fde47d);
-    border-bottom: 4px solid #e0c200;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+    background: rgba(255,255,255,0.85);
+    padding: 8px 12px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-.header-logo {
-    height: 60px;
-    width: auto;
+.top-fixed-logo {
+    height: 18px;
+    margin-bottom: 4px;
 }
 
-.header-title {
-    font-size: clamp(24px, 4vw, 42px);
-    font-weight: bold;
-    margin: 0;
+.top-fixed-title {
+    font-size: 14px;
+    font-weight: 500;
     color: #222;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    margin-bottom: 6px;
 }
 
-/*Поисковик*/
-.search-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin: 20px auto;
-    max-width: 600px;
-    padding: 10px 20px;
-    background: #fff;
-    border-radius: 50px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    position: relative;
+/* Поиск */
+.top-fixed-search {
+    width: 100%;
 }
 
-.search-input {
-    flex: 1;
-    padding: 12px 40px 12px 18px;
-    border: none;
-    border-radius: 50px;
-    font-size: 16px;
+.top-fixed-input {
+    width: 100%;
+    padding: 6px 10px;          /* уменьшенная высота */
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
     outline: none;
-    font-family: 'Tinkoff Sans', sans-serif;
-}
-
-@media (hover: none) {
-  .stand:hover,
-  .stand:hover .fly-button {
-    transform: none;
-    left: -100%; /* кнопка не выезжает */
-  }
+    font-family: inherit;
 }
