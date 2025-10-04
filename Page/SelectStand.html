@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../Style/SelectStendStyle.css">
+    <title>Верстка по макету</title>
+  </head>
+  <body>
+
+    <div class="sidebar">
+      <label>Номер платформы (id)</label>
+      <label>Наименование</label>
+      <label>Место нахождения (по карте, например 2Б, 1А и тд)</label>
+      <label>Ключевые слова (#IT и тд)</label>
+      <label>Тип платформы</label>
+      <label>Описание:</label>
+      <textarea class="description" placeholder="Введите описание..."></textarea>
+    </div>
+    
+    <div class="right-side">
+      <button class="clear-button">Очистить</button>
+      <div class="header">Список талонов (Очередь)</div>
+      <div class="queue-list">
+        <div class="queue-item">
+          <div class="queue-id">Id</div>
+          <div class="queue-time">Время получения</div>
+          <input type="checkbox" class="checkbox" />
+          <select class="dropdown">
+            <option>Выберите</option>
+            <option>Опция 1</option>
+            <option>Опция 2</option>
+          </select>
+          <button class="delete-btn">Удалить</button>
+        </div>
+        <div class="queue-item">
+          <div class="queue-id">Id</div>
+          <div class="queue-time">Время получения</div>
+          <input type="checkbox" class="checkbox" />
+          <select class="dropdown">
+            <option>Выберите</option>
+            <option>Опция 1</option>
+            <option>Опция 2</option>
+          </select>
+          <button class="delete-btn">Удалить</button>
+        </div>
+        <div class="queue-item">
+          <div class="queue-id">Id</div>
+          <div class="queue-time">Время получения</div>
+          <input type="checkbox" class="checkbox" />
+          <select class="dropdown">
+            <option>Выберите</option>
+            <option>Опция 1</option>
+            <option>Опция 2</option>
+          </select>
+          <button class="delete-btn">Удалить</button>
+        </div>
+        <div class="queue-item">
+          <div class="queue-id">Id</div>
+          <div class="queue-time">Время получения</div>
+          <input type="checkbox" class="checkbox" />
+          <select class="dropdown">
+            <option>Выберите</option>
+            <option>Опция 1</option>
+            <option>Опция 2</option>
+          </select>
+          <button class="delete-btn">Удалить</button>
+        </div>
+      </div>
+    </div>
+    <div id="confirmModal" class="modal">
+  <div class="modal-content">
+    <p>Вы уверены, что хотите удалить эту запись?</p>
+    <button id="confirmBtn">Да</button>
+    <button id="cancelBtn">Отмена</button>
+  </div>
+  </div>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const modal = document.getElementById("confirmModal");
+        const confirmBtn = document.getElementById("confirmBtn");
+        const cancelBtn = document.getElementById("cancelBtn");
+        let itemToDelete = null; // выбранная запись или "all" для очистки
+
+        const queueList = document.querySelector(".queue-list");
+
+        // Обработка каждой записи
+        document.querySelectorAll(".queue-item").forEach(item => {
+          const checkbox = item.querySelector(".checkbox");
+          const dropdown = item.querySelector(".dropdown");
+          const deleteBtn = item.querySelector(".delete-btn");
+
+          dropdown.disabled = true;
+          deleteBtn.disabled = true;
+          deleteBtn.classList.add("disabled-btn");
+
+          checkbox.addEventListener("change", () => {
+            const checked = checkbox.checked;
+            dropdown.disabled = !checked;
+            deleteBtn.disabled = !checked;
+
+            if (checked) deleteBtn.classList.remove("disabled-btn");
+            else {
+              deleteBtn.classList.add("disabled-btn");
+              dropdown.selectedIndex = 0;
+            }
+          });
+
+          deleteBtn.addEventListener("click", () => {
+            if (!deleteBtn.disabled) {
+              itemToDelete = item;
+              modal.querySelector("p").textContent = "Вы уверены, что хотите удалить эту запись?";
+              modal.style.display = "flex";
+            }
+          });
+        });
+
+        // Кнопка "Очистить" с подтверждением
+        const clearBtn = document.querySelector(".clear-button");
+        clearBtn.addEventListener("click", () => {
+          if (queueList.children.length === 0) return;
+          itemToDelete = "all";
+          modal.querySelector("p").textContent = "Вы уверены, что хотите удалить все записи?";
+          modal.style.display = "flex";
+        });
+
+        // Подтверждение удаления
+        confirmBtn.addEventListener("click", () => {
+          if (itemToDelete === "all") {
+            queueList.innerHTML = "";
+          } else if (itemToDelete) {
+            itemToDelete.remove();
+          }
+          modal.style.display = "none";
+          itemToDelete = null;
+        });
+
+        // Отмена
+        cancelBtn.addEventListener("click", () => {
+          modal.style.display = "none";
+          itemToDelete = null;
+        });
+
+        // Закрытие модального окна при клике вне его
+        modal.addEventListener("click", e => {
+          if (e.target === modal) {
+            modal.style.display = "none";
+            itemToDelete = null;
+          }
+        });
+
+      });
+  </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Личный кабинет</title>
+  <link rel="stylesheet" href="../Style/ProfileStyle.css">
+</head>
+<body>
+
+  <div class="cabinet">
+    <h2 class="cabinet-header">Личный кабинет</h2>
+    <div class="platform-list">
+
+      <div class="platform-item">
+        <div class="platform-id">ID-Платформы: 101</div>
+        <div class="platform-time">
+          <span>Начало: 10:00</span> – <span>Конец: 11:30</span>
+        </div>
+        <button class="unsubscribe-btn">Отписаться</button>
+      </div>
+
+      <div class="platform-item">
+        <div class="platform-id">ID: 205</div>
+        <div class="platform-time">
+          <span>Начало: 12:00</span> – <span>Конец: 13:00</span>
+        </div>
+        <button class="unsubscribe-btn">Отписаться</button>
+      </div>
+
+      <div class="platform-item">
+        <div class="platform-id">ID: 330</div>
+        <div class="platform-time">
+          <span>Начало: 15:30</span> – <span>Конец: 17:00</span>
+        </div>
+        <button class="unsubscribe-btn">Отписаться</button>
+      </div>
+
+    </div>
+  </div>
+<script>
+  document.querySelectorAll('.unsubscribe-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+            this.closest('.platform-item').remove();
+        });
+    });
+</script>
+</body>
+
+</html>

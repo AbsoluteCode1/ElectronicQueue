@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.cabinet {
+  width: 700px;
+  background-image: linear-gradient(to bottom right,#fcde30, #fde47d);
+  padding: 20px;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.cabinet-header {
+  margin: 0 0 20px 0;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.platform-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.platform-item {
+  background: white;
+  border-radius: 20px;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.platform-id {
+  font-weight: 700;
+  font-style: italic;
+  width: 80px;
+}
+
+.platform-item {
+  background: white;
+  border-radius: 20px;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap; /* позволит переносить элементы */
+}
+
+/* Для мобильных */
+@media (max-width: 600px) {
+  .platform-item {
+    flex-direction: column;  /* ставим элементы в столбик */
+    align-items: flex-start; /* выравнивание по левому краю */
+  }
+}
+
+.unsubscribe-btn {
+  background: #ff4d4d;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 15px;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+   align-self: flex-end
+}
+
+.unsubscribe-btn:hover {
+  background: #e63939;
+}
