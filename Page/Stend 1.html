@@ -1,66 +1,72 @@
 <html>
     <head>
         <link rel="stylesheet" href="../Style/style_stand.css">
+        <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
         <style>
            
         </style>
     </head>
 
     <body>
-        <div class="horizontal-container">
-            <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image item_horizontal-container">
-            <p class="large-text item_horizontal-container">
-                НАШИ СТЕНДЫ!!!
-            </p>
+        <div class="header-container">
+            <img src="../tbank_logo.svg" alt="Логотип" class="header-logo">
+            <h1 class="header-title">НАШИ СТЕНДЫ!!!</h1>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Найди свой стенд...">
         </div>
         
-        <div class="table">
-            <div class="table-row">
-                <div class="table-cell">
-                    <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image">
-                    <p class="large-text">
-                        СТЕНД 1
-                    </p>
-                    <button class="fly-button">Запишись к нам!</button>
-                </div>
-                <div class="table-cell">
-                    <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image">
-                    <p class="large-text">
-                        СТЕНД 2
-                    </p>
-                    <button class="fly-button">Присоединяйся к нам!</button>
-                </div>
-                <div class="table-cell">
-                    <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image">
-                    <p class="large-text">
-                        СТЕНД 3
-                    </p>
-                    <button class="fly-button">Приходи к нам!</button>
-                </div>
+        <div class="stands-container">
+            <div class="stand" id="alpha1">
+                <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image">
+                <p class="large-text">Арена "T-Гейм"</p>
+                <button class="fly-button recording">Записаться на стенд</button>
+                <button class="fly-button cancel">Отказаться от записи</button>
+                <button class="fly-button accepting" onclick="goToQR('Арена &quot;T-Гейм&quot;')">Отсканировать QR</button>
             </div>
-            <div class="table-row">
-                <div class="table-cell">
-                    <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image">
-                    <p class="large-text">
-                        СТЕНД 4
-                    </p>
-                    <button class="fly-button">Го к нам!</button>
-                </div>
-                <div class="table-cell">
-                    <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image">
-                    <p class="large-text">
-                        СТЕНД 5
-                    </p>
-                    <button class="fly-button">Прокачай простату!</button>
-                </div>
-                <div class="table-cell">
-                    <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image">
-                    <p class="large-text">
-                        СТЕНД 6
-                    </p>
-                    <button class="fly-button">1000-7</button>
-                </div>
+            <div class="stand" id="alpha2">
+                <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image">
+                <p class="large-text">Станция "T-Орбита"</p>
+                <button class="fly-button recording">Записаться на стенд</button>
+                <button class="fly-button cancel">Отказаться от записи</button>
+                <button class="fly-button accepting" onclick="goToQR('Станция &quot;T-Орбита&quot;')">Отсканировать QR</button>
+
+            </div>
+            <div class="stand" id="alpha3">
+                <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image">
+                <p class="large-text">Космодром "T-Запуск"</p>
+                <button class="fly-button recording">Записаться на стенд</button>
+                <button class="fly-button cancel">Отказаться от записи</button>
+                <button class="fly-button accepting" onclick="goToQR('Космодром &quot;T-Запуск&quot;')">Отсканировать QR</button>
+
+            </div>
+            <div class="stand" id="alpha4">
+                <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image">
+                <p class="large-text">Лаборатория "T-Кибербезопасность"</p>
+                <button class="fly-button recording">Записаться на стенд</button>
+                <button class="fly-button cancel">Отказаться от записи</button>
+                <button class="fly-button accepting" onclick="goToQR('Лаборатория &quot;T-Кибербезопасность&quot;')">Отсканировать QR</button>
+
+            </div>
+            <div class="stand" id="alpha5">
+                <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image">
+                <p class="large-text">ЦУП "T-Ассистенты"</p>
+                <button class="fly-button recording">Записаться на стенд</button>
+                <button class="fly-button cancel">Отказаться от записи</button>
+                <button class="fly-button accepting" onclick="goToQR('ЦУП &quot;T-Ассистенты&quot;')">Отсканировать QR</button>
+
+            </div>
+            <div class="stand" id="alpha6">
+                <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image">
+                <p class="large-text">Галерея "T-Будущее"</p>
+                <button class="fly-button recording">Записаться на стенд</button>
+                <button class="fly-button cancel">Отказаться от записи</button>
+                <button class="fly-button accepting" onclick="goToQR('Галерея &quot;T-Будущее&quot;')">Отсканировать QR</button>
+
             </div>
         </div>
+        <script src="../js/script_stands_page.js"></script>
+
     </body>
 </html>

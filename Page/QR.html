@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="../Style/style_stand.css">
+    <meta charset="UTF-8">
+    <title>Ваш QR-код</title>
+    <style>
+        body {
+        font-family: Tinkoff Sans;
+        text-align: center;
+        margin-top: 50px;
+        }
+        #qrcode {
+        display: inline-block;
+        margin: 20px auto;
+        }
+        
+    </style>
+</head>
+<body>
+  <h1>Ваш QR-код</h1>
+  <div id="qrcode"></div>
+  <p id="qrText"></p>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+  <script>
+    function encodeBase64(str) {
+      return btoa(unescape(encodeURIComponent(str)));
+    }
+    function decodeBase64(str) {
+      return decodeURIComponent(escape(atob(str)));
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    let data = params.get("data");
+
+    if (typeof data !== "string" || data.trim() === "") {
+      //document.getElementById("qrText").textContent = "Нет данных для генерации QR";
+    } else {
+      //document.getElementById("qrText").textContent = data;
+
+      const encoded = encodeBase64(data);
+
+      new QRCode(document.getElementById("qrcode"), {
+        text: encoded,
+        width: 200,
+        height: 200,
+        correctLevel: QRCode.CorrectLevel.M
+      });
+
+      console.log("Base64 в QR:", encoded);
+      console.log("После декодирования:", decodeBase64(encoded));
+    }
+  </script>
+</body>
+</html>
