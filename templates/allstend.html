@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link rel="stylesheet" href="../style/style_stand.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style_stand.css') }}">
         <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
         <style>
            
@@ -31,11 +31,6 @@
 
     </div>
 
-
-
-
-
-        
         <div class="stands-container">
             <div class="stand" id="alpha1">
                 <img src="../svg/tbank_logo.svg" alt="Логотип" class="adaptive-image">
@@ -85,7 +80,6 @@
 
             </div>
         </div>
-        <script src="../js/script_stands_page.js"></script>
-
+        <script src="{{ url_for('static', filename='js/script_stands_page.js') }}"></script>
     </body>
 </html>

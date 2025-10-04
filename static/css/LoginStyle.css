@@ -128,3 +128,24 @@ body {
 body {
     font-family: 'Tinkoff Sans', sans-serif;
 }
+
+#message {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  display: none;
+  text-align: center;
+}
+
+#message.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+#message.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}

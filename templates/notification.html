@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Уведомления</title>
-    <link rel="stylesheet" href="../style/style_stand.css">
-    <link rel="stylesheet" href="../style/NotificationStyle.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_stand.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/NotificationStyle.css') }}">
 </head>
 <body>
 
@@ -31,6 +31,7 @@
     </main>
 
     <script>
+        //ВЫНЕСТИ В ФАЙЛ
         const notifications = [
             {title: 'Стенд T-Гейм', start: '2025-10-05T12:00', end: '2025-10-05T14:00'},
             {title: 'Станция T-Орбита', start: '2025-10-05T15:00', end: '2025-10-05T17:00'},

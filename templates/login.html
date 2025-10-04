@@ -25,10 +25,8 @@
             <button type="submit" class="login-btn">Войти</button>
             <button type="button" class="register-btn">Регистрация</button>
         </form>
-
     </div>
-
-
-    <script src="../js/AuthUser.js"></script>
+    <div id="message" class="hidden"></div>
+    <script src="{{ url_for('static', filename='js/AuthUser.js') }}"></script>
 </body>
 </html>

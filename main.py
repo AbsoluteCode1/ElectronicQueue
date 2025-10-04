@@ -3,11 +3,13 @@ import sqlite3
 
 app = Flask(__name__, template_folder="templates")
 
+app.secret_key = "secretkey"  # обязательно
+
 # -----------------------
 # Подключение к базе
 # -----------------------
 def get_db_connection():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('AbsoluteCode.db')
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -32,38 +34,39 @@ def profile_page():
 @app.route('/api/register', methods=['POST'])
 def register():
     data = request.get_json()
-    username = data.get('username')
+    name = data.get('username')
     password = data.get('password')
     conn = get_db_connection()
     try:
-        conn.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password))
+        conn.execute('INSERT INTO users (Login, Password) VALUES (?, ?)', (name, password))
         conn.commit()
-        user_id = conn.execute('SELECT id FROM users WHERE username=?', (username,)).fetchone()['id']
+        user_id = conn.execute('SELECT Login FROM users WHERE Login=?', (name,)).fetchone()['Login']
         return jsonify({'id': user_id}), 201
     except sqlite3.IntegrityError:
-        return jsonify({'error': 'User already exists'}), 400
+        return jsonify({'error': 'Пользователь с таким логином уже существует'}), 400
     finally:
         conn.close()
 
-app.secret_key = "secretkey"  # обязательно
+
 
 @app.route('/api/login', methods=['POST'])
 def login():
     data = request.get_json()
-    username = data.get('username')
+    name = data.get('username')
     password = data.get('password')
 
     conn = get_db_connection()
     user = conn.execute(
-        'SELECT * FROM users WHERE username=? AND password=?',
-        (username, password)
+        'SELECT * FROM users WHERE Login=? AND Password=?',
+        (name, password)
     ).fetchone()
     conn.close()
 
     if user:
-        session['user_id'] = user['id']  # сохраняем в сессию
-        return jsonify({'id': user['id'], 'username': user['username']}), 200
-    return jsonify({'error': 'Invalid credentials'}), 401
+        return jsonify({'id': user['Login']}), 200
+    return jsonify({'error': 'Ошибка авторизации'}), 401
+
+
 
 @app.route('/api/queue/<int:user_id>', methods=['GET'])
 def get_queue(user_id):
