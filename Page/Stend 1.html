@@ -9,26 +9,43 @@
     
     <body>
 
-        <div class="top-fixed">
-            <img src="../tbank_logo.svg" alt="Логотип" class="top-fixed-logo">
-            <span class="top-fixed-title">T-Двор</span>
+    <div class="top-fixed">
+        <!-- Кнопка профиля слева -->
+        <a href="/profile" class="profile-btn left-btn">
+            <img src="../svg/profile.svg" alt="Профиль">
+        </a>
 
-            <!-- Поиск прямо внутри блока -->
+        <!-- Центр -->
+        <div class="top-fixed-center">
+            <img src="../svg/tbank_logo.svg" alt="Логотип" class="top-fixed-logo">
+            <span class="top-fixed-title">T-Двор</span>
             <div class="top-fixed-search">
                 <input type="text" id="searchInput" placeholder="Найди свой стенд..." class="top-fixed-input">
             </div>
         </div>
+
+        <!-- Кнопка уведомлений справа -->
+        <a href="/notification" class="profile-btn right-btn has-notifications" data-count="3">
+            <img src="../svg/bell.svg" alt="Уведомления">
+        </a>
+
+    </div>
+
+
+
+
+
         
         <div class="stands-container">
             <div class="stand" id="alpha1">
-                <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image">
+                <img src="../svg/tbank_logo.svg" alt="Логотип" class="adaptive-image">
                 <p class="large-text">Арена "T-Гейм"</p>
                 <button class="fly-button recording">Записаться на стенд</button>
                 <button class="fly-button cancel">Отказаться от записи</button>
                 <button class="fly-button accepting" onclick="goToQR('Арена &quot;T-Гейм&quot;')">Отсканировать QR</button>
             </div>
             <div class="stand" id="alpha2">
-                <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image">
+                <img src="../svg/tbank_logo.svg" alt="Логотип" class="adaptive-image">
                 <p class="large-text">Станция "T-Орбита"</p>
                 <button class="fly-button recording">Записаться на стенд</button>
                 <button class="fly-button cancel">Отказаться от записи</button>
@@ -36,7 +53,7 @@
 
             </div>
             <div class="stand" id="alpha3">
-                <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image">
+                <img src="../svg/tbank_logo.svg" alt="Логотип" class="adaptive-image">
                 <p class="large-text">Космодром "T-Запуск"</p>
                 <button class="fly-button recording">Записаться на стенд</button>
                 <button class="fly-button cancel">Отказаться от записи</button>
@@ -44,7 +61,7 @@
 
             </div>
             <div class="stand" id="alpha4">
-                <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image">
+                <img src="../svg/tbank_logo.svg" alt="Логотип" class="adaptive-image">
                 <p class="large-text">Лаборатория "T-Кибербезопасность"</p>
                 <button class="fly-button recording">Записаться на стенд</button>
                 <button class="fly-button cancel">Отказаться от записи</button>
@@ -52,7 +69,7 @@
 
             </div>
             <div class="stand" id="alpha5">
-                <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image">
+                <img src="../svg/tbank_logo.svg" alt="Логотип" class="adaptive-image">
                 <p class="large-text">ЦУП "T-Ассистенты"</p>
                 <button class="fly-button recording">Записаться на стенд</button>
                 <button class="fly-button cancel">Отказаться от записи</button>
@@ -60,7 +77,7 @@
 
             </div>
             <div class="stand" id="alpha6">
-                <img src="../tbank_logo.svg" alt="Логотип" class="adaptive-image">
+                <img src="../svg/tbank_logo.svg" alt="Логотип" class="adaptive-image">
                 <p class="large-text">Галерея "T-Будущее"</p>
                 <button class="fly-button recording">Записаться на стенд</button>
                 <button class="fly-button cancel">Отказаться от записи</button>

@@ -133,43 +133,139 @@ body{
 .top-fixed {
     position: fixed;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    width: 100%;
     z-index: 1000;
-
-    display: flex;
-    flex-direction: column;   /* лого → заголовок → поиск */
-    align-items: center;
 
     background: rgba(255,255,255,0.85);
     padding: 8px 12px;
-    border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+    display: flex;
+    justify-content: center; /* центрируем блок */
 }
 
-.top-fixed-logo {
+.top-fixed-center { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+} 
+.top-fixed-logo { 
+    height: 18px; 
+    margin-bottom: 4px; 
+    margin-right: 20px; 
+} 
+
+.top-fixed-title { 
+    font-size: 18px; 
+    font-weight: 500; 
+    color: #222; 
+    margin-bottom: 6px; 
+    margin-right: 20px; 
+} 
+.top-fixed-search { 
+    width: 200px; 
+} 
+.top-fixed-input { 
+    width: 100%; 
+    padding: 6px 10px; 
+    font-size: 13px; 
+    border: 1px solid #ccc; 
+    border-radius: 6px; 
+    outline: none; 
+    font-family: inherit; 
+}
+
+/* Базовый стиль кнопки */
+.profile-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+}
+
+/* Иконка внутри кнопки */
+.profile-btn img {
+    width: 26px;   /* увеличил размер */
+    height: 26px;
+    z-index: 1;
+}
+
+/* Ховер‑эффект */
+.profile-btn:hover {
+    transform: translateY(-50%) scale(1.15);
+}
+
+/* Левый край */
+.left-btn {
+    left: 30px;
+}
+
+/* Правый край */
+.right-btn {
+    right: 50px;
+}
+
+/* Бейджик уведомлений */
+.right-btn::after {
+    content: attr(data-count);
+    position: absolute;
+    top: -4px;
+    right: -4px;
+
+    width: 18px;   /* фиксированный размер */
     height: 18px;
-    margin-bottom: 4px;
+    line-height: 18px;
+
+    background: #ec6161;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 50%;
+    text-align: center;
+
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    z-index: 2;
+}
+.right-btn[data-count="0"]::after,
+.right-btn:not([data-count])::after {
+    display: none;
 }
 
-.top-fixed-title {
-    font-size: 14px;
-    font-weight: 500;
-    color: #222;
-    margin-bottom: 6px;
+/* Анимация тряски */
+@keyframes bell-shake {
+    0%   { transform: translateY(0%) rotate(0deg); }
+    15%  { transform: translateY(0%) rotate(-15deg); }
+    30%  { transform: translateY(0%) rotate(15deg); }
+    45%  { transform: translateY(0%) rotate(-10deg); }
+    60%  { transform: translateY(0%) rotate(10deg); }
+    75%  { transform: translateY(0%) rotate(-5deg); }
+    100% { transform: translateY(0%) rotate(0deg); }
 }
 
-/* Поиск */
-.top-fixed-search {
-    width: 100%;
+.right-btn.has-notifications img {
+    animation: bell-shake 1s ease-in-out infinite;
+    transform-origin: top center;
 }
 
-.top-fixed-input {
-    width: 100%;
-    padding: 6px 10px;          /* уменьшенная высота */
-    font-size: 13px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    outline: none;
-    font-family: inherit;
+.right-btn[data-count="0"] img {
+    animation: none;
+}
+
+/* Тряска только если есть уведомления */
+.has-notifications img {
+    animation: bell-shake 1s ease-in-out infinite;
+    transform-origin: top center;
 }
