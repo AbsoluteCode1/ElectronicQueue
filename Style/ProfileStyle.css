@@ -1,79 +1,175 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f9f9f9;
-  color: #333;
-  display: flex;
-  justify-content: center;
-  padding: 40px;
+/* ===== Шрифты (как на главной) ===== */
+@font-face {
+    font-family: 'Tinkoff Sans';
+    src: url('font/TinkoffSans-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
 }
 
-.cabinet {
-  width: 700px;
-  background-image: linear-gradient(to bottom right,#fcde30, #fde47d);
-  padding: 20px;
-  border-radius: 20px;
-  box-sizing: border-box;
+@font-face {
+    font-family: 'Tinkoff Sans';
+    src: url('font/TinkoffSans-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
 }
 
-.cabinet-header {
-  margin: 0 0 20px 0;
-  font-weight: 700;
-  font-size: 20px;
+@font-face {
+    font-family: 'Tinkoff Sans';
+    src: url('font/TinkoffSans-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
-.platform-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+html, body {
+    margin: 0;
+    font-family: 'Tinkoff Sans', sans-serif;
+    background: #f9f9f9;
+    color: #222;
+    padding-top: 80px; /* отступ под фиксированную шапку */
 }
 
-.platform-item {
-  background: white;
-  border-radius: 20px;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.top-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    background: rgba(255,255,255,0.85);
+    padding: 8px 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+    display: flex;  
+    justify-content: center; /* центрируем блок */
 }
 
-.platform-id {
-  font-weight: 700;
-  font-style: italic;
-  width: 80px;
+.top-fixed-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
-.platform-item {
-  background: white;
-  border-radius: 20px;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap; /* позволит переносить элементы */
+.top-fixed-logo {
+    height: 22px;
+    margin-bottom: 4px;
 }
 
-/* Для мобильных */
-@media (max-width: 600px) {
-  .platform-item {
-    flex-direction: column;  /* ставим элементы в столбик */
-    align-items: flex-start; /* выравнивание по левому краю */
-  }
+.top-fixed-title {
+    font-size: 18px;
+    color: #222;
 }
 
+/* Кнопки в шапке */
+.profile-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+}
+
+.profile-btn img {
+    width: 22px;
+    height: 22px;
+}
+
+.profile-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.left-btn { left: 30px; }
+.right-btn { right: 30px; }
+
+/* ===== Контейнер ===== */
+.cabinet-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+/* ===== Список стендов ===== */
+.stand-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.stand-card {
+    background: linear-gradient(to bottom right, #fcde30, #fde47d);
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    transition: transform 0.2s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+}
+
+.stand-card:hover {
+    transform: translateY(-3px);
+}
+
+.stand-info {
+    flex-grow: 1;
+    min-width: 160px;
+}
+
+.stand-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.stand-time {
+    font-size: 14px;
+    color: #333;
+    margin-top: 4px;
+}
+
+/* ===== Кнопка "Отписаться" ===== */
 .unsubscribe-btn {
-  background: #ff4d4d;
-  border: none;
-  border-radius: 20px;
-  padding: 8px 15px;
-  color: white;
-  font-size: 12px;
-  cursor: pointer;
-  transition: 0.2s;
-   align-self: flex-end
+    background: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ec6161;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .unsubscribe-btn:hover {
-  background: #e63939;
+    background: #ffeaea;
+    transform: scale(1.05);
+}
+
+/* ===== Адаптив ===== */
+@media (max-width: 600px) {
+    .stand-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .unsubscribe-btn {
+        align-self: flex-end;
+        margin-top: 10px;
+    }
 }

@@ -1,50 +1,59 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Личный кабинет</title>
-  <link rel="stylesheet" href="../Style/ProfileStyle.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="../Style/ProfileStyle.css">
+    <link rel="stylesheet" href="../Style/style_stand.css">
 </head>
 <body>
+ <div class="top-fixed">
+        <!-- Кнопка профиля слева -->
+        <a href="./AllStend.html" class="profile-btn left-btn">
+            <img src="../svg/ArrowBack.svg" alt="Профиль">
+        </a>
 
-  <div class="cabinet">
-    <h2 class="cabinet-header">Личный кабинет</h2>
-    <div class="platform-list">
-
-      <div class="platform-item">
-        <div class="platform-id">ID-Платформы: 101</div>
-        <div class="platform-time">
-          <span>Начало: 10:00</span> – <span>Конец: 11:30</span>
+        <!-- Центр -->
+        <div class="top-fixed-center">
+            <img src="../svg/tbank_logo.svg" alt="Логотип" class="top-fixed-logo">
+            <span class="top-fixed-title">Личный кабинет</span>
         </div>
-        <button class="unsubscribe-btn">Отписаться</button>
-      </div>
-
-      <div class="platform-item">
-        <div class="platform-id">ID: 205</div>
-        <div class="platform-time">
-          <span>Начало: 12:00</span> – <span>Конец: 13:00</span>
-        </div>
-        <button class="unsubscribe-btn">Отписаться</button>
-      </div>
-
-      <div class="platform-item">
-        <div class="platform-id">ID: 330</div>
-        <div class="platform-time">
-          <span>Начало: 15:30</span> – <span>Конец: 17:00</span>
-        </div>
-        <button class="unsubscribe-btn">Отписаться</button>
-      </div>
-
+        <a href="./Notification.html" class="profile-btn right-btn has-notifications" data-count="3">
+            <img src="../svg/bell.svg" alt="Уведомления">
+        </a>
     </div>
-  </div>
-<script>
-  document.querySelectorAll('.unsubscribe-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-            this.closest('.platform-item').remove();
-        });
-    });
-</script>
-</body>
 
+    <!-- ===== Контент ===== -->
+    <div class="cabinet-container">
+        <h2>Стенды, которые предстоит посетить:</h2>
+        <div class="stand-list">
+
+            <div class="stand-card">
+                <div class="stand-info">
+                    <p class="stand-title">Стенд IT-проекты</p>
+                    <p class="stand-time">12:00 – 14:00</p>
+                </div>
+                <button class="unsubscribe-btn">Отписаться</button>
+            </div>
+
+            <div class="stand-card">
+                <div class="stand-info">
+                    <p class="stand-title">Стенд Наука</p>
+                    <p class="stand-time">15:00 – 17:00</p>
+                </div>
+                <button class="unsubscribe-btn">Отписаться</button>
+            </div>
+
+            <div class="stand-card">
+                <div class="stand-info">
+                    <p class="stand-title">Стенд Бизнес-идеи</p>
+                    <p class="stand-time">17:30 – 19:00</p>
+                </div>
+                <button class="unsubscribe-btn">Отписаться</button>
+            </div>
+
+        </div>
+    </div>
+</body>
 </html>

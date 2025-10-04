@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Уведомления</title>
+    <link rel="stylesheet" href="../Style/style_stand.css">
+    <link rel="stylesheet" href="../Style/NotificationStyle.css">
+</head>
+<body>
+
+    <!-- Шапка как на главной -->
+    <div class="top-fixed">
+        <a href="./Profile.html" class="profile-btn left-btn">
+            <img src="../svg/profile.svg" alt="Профиль">
+        </a>
+
+        <div class="top-fixed-center">
+            <img src="../svg/tbank_logo.svg" alt="Логотип" class="top-fixed-logo">
+            <span class="top-fixed-title">Уведомления</span>
+        </div>
+
+        <a href="/notification" class="profile-btn right-btn has-notifications" data-count="3">
+            <img src="../svg/bell.svg" alt="Уведомления">
+        </a>
+    </div>
+
+    <!-- Контейнер уведомлений -->
+    <main class="notifications-list" id="notificationsContainer">
+        <!-- JS вставит уведомления -->
+    </main>
+
+    <script>
+        const notifications = [
+            {title: 'Стенд T-Гейм', start: '2025-10-05T12:00', end: '2025-10-05T14:00'},
+            {title: 'Станция T-Орбита', start: '2025-10-05T15:00', end: '2025-10-05T17:00'},
+            {title: 'Лаборатория T-Кибербезопасность', start: '2025-10-05T17:30', end: '2025-10-05T19:00'},
+            {title: 'ЦУП T-Ассистенты', start: '2025-10-05T10:00', end: '2025-10-05T12:00'},
+        ];
+
+        function getBackgroundColor(start, end) {
+            const now = new Date();
+            const startTime = new Date(start);
+            const endTime = new Date(end);
+
+            if (now < startTime) return '#fcde30'; // будущее
+            if (now > endTime) return '#dddddd';   // прошло
+
+            const total = endTime - startTime;
+            const passed = now - startTime;
+            const percent = Math.min(Math.max(passed / total, 0), 1);
+
+            const r = Math.floor(252 + (236 - 252) * percent);
+            const g = Math.floor(222 + (97 - 222) * percent);
+            const b = Math.floor(48 + (97 - 48) * percent);
+            return `rgb(${r},${g},${b})`;
+        }
+
+        const container = document.getElementById('notificationsContainer');
+
+        notifications.forEach((notif) => {
+            const row = document.createElement('div');
+            row.className = 'notification-row';
+            row.style.backgroundColor = getBackgroundColor(notif.start, notif.end);
+            row.innerHTML = `
+                <div class="notification-info">
+                    <p class="notification-title">${notif.title}</p>
+                    <p class="notification-time">
+                        ${new Date(notif.start).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})} – 
+                        ${new Date(notif.end).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}
+                    </p>
+                </div>
+                <button class="mark-read-btn" onclick="markRead(this)">Прочитано</button>
+            `;
+            container.appendChild(row);
+        });
+
+        function markRead(button) {
+            button.parentElement.remove();
+        }
+
+        // Обновление цвета каждую минуту
+        setInterval(() => {
+            document.querySelectorAll('.notification-row').forEach((row, i) => {
+                const notif = notifications[i];
+                if (notif) row.style.backgroundColor = getBackgroundColor(notif.start, notif.end);
+            });
+        }, 60000);
+    </script>
+</body>
+</html>
