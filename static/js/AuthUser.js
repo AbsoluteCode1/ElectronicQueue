@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await res.json();
         if (res.ok) {
             localStorage.setItem("user_id", data.id);
-            window.location.href = "/profile"; // только при успехе
+            window.location.href = "/allstend"; // только при успехе
         } else {
             showMessage(data.error, "error"); // выводим ошибку
         }

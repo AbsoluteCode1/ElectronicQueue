@@ -13,20 +13,30 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
+
 # -----------------------
 # Страницы
 # -----------------------
-@app.route('/')
-def index():
-    return render_template('index.html')
 
-@app.route('/login')
+@app.route('/')
 def login_page():
-    return render_template('login.html')    
+    return render_template('login.html') 
 
 @app.route('/profile')
 def profile_page():
     return render_template('profile.html')
+
+@app.route('/allstend')
+def AllStand():
+    return render_template('allstend.html')
+
+@app.route('/qr')
+def QRCode():
+    return render_template('qr.html')
+
+@app.route('/selectstand')
+def SelectStand():
+    return render_template('selectstand.html')
 
 # -----------------------
 # API Эндпоинты
