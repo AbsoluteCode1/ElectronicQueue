@@ -129,6 +129,14 @@ body{
     transform: translateY(-5px);
 }
 
+.stand-description {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+    text-align: center;
+    line-height: 1.4;
+}
+
 /*Заголовок окна*/
 .top-fixed {
     position: fixed;
@@ -198,7 +206,7 @@ body{
 
 /* Иконка внутри кнопки */
 .profile-btn img {
-    width: 26px;   /* увеличил размер */
+    width: 26px;
     height: 26px;
     z-index: 1;
 }

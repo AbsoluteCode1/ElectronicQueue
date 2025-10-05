@@ -95,3 +95,162 @@ const status = "был";
 const data = encodeURIComponent(`${standName}|${user}|${status}`);
 window.location.href = `qr.html?data=${data}`;
 }
+
+async function loadStandsFromDB() {
+    try {
+        const response = await fetch('/api/stands');
+        if (!response.ok) throw new Error('Ошибка загрузки стендов');
+        const stands = await response.json();
+        
+        if (stands.length > 0) {
+            renderStandsFromDB(stands);
+        } else {
+            // Если в БД нет стендов, показываем заглушку
+            showDefaultStands();
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+        showDefaultStands();
+    }
+}
+
+// Функция отрисовки стендов из БД
+function renderStandsFromDB(stands) {
+    const container = document.getElementById('standsContainer');
+    container.innerHTML = ''; // Очищаем контейнер
+
+    stands.forEach(stand => {
+        const standElement = createStandElementFromDB(stand);
+        container.appendChild(standElement);
+    });
+
+    // Инициализируем поиск после загрузки стендов
+    initializeSearch();
+}
+
+// Создание элемента стенда из данных БД
+function createStandElementFromDB(stand) {
+    const standDiv = document.createElement('div');
+    standDiv.className = 'stand';
+    standDiv.id = `stand-${stand.id}`;
+    
+    // Используем дефолтную картинку, так как в вашей таблице нет image_url
+    const imageUrl = "../static/svg/tbank_logo.svg";
+    
+    standDiv.innerHTML = `
+        <img src="${imageUrl}" class="adaptive-image" alt="${stand.name}">
+        <p class="large-text">${stand.description}</p>
+        ${stand.name ? `<p class="stand-description">${stand.name}</p>` : ''}
+        <button class="fly-button recording">Записаться на стенд</button>
+        <button class="fly-button cancel">Отказаться от записи</button>
+        <button class="fly-button accepting" onclick="goToQR('${stand.name.replace(/'/g, "\\'")}')">
+            Отсканировать QR
+        </button>
+    `;
+
+    // Добавляем обработчики для кнопок
+    addStandEventListeners(standDiv, stand);
+    
+    return standDiv;
+}
+
+// Добавление обработчиков событий для стенда
+function addStandEventListeners(standElement, stand) {
+    const recordBtn = standElement.querySelector('.fly-button.recording');
+    const cancelBtn = standElement.querySelector('.fly-button.cancel');
+    
+    recordBtn.addEventListener('click', function() {
+        followStand(stand.id, stand.name);
+    });
+    
+    cancelBtn.addEventListener('click', function() {
+        unfollowStand(stand.id, stand.name);
+    });
+}
+
+async function followStand(standId, standName) {
+    try {
+        const userId = localStorage.getItem('userId') || 'current_user';
+        
+        // Записываем в stand_queue (ваша существующая таблица)
+        const response1 = await fetch('/api/queue', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                stand_name: standName
+            })
+        });
+
+        // Записываем в Queue (новая таблица для профиля)
+        const response2 = await fetch('/api/user/queue', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                platform_id: standId,
+                stand_name: standName
+            })
+        });
+
+        if (response1.ok && response2.ok) {
+            alert(`Вы записались на стенд "${standName}"`);
+            updateButtonState(standId, true);
+        } else {
+            alert('Ошибка при записи на стенд');
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+    }
+}
+
+async function unfollowStand(standId, standName) {
+    try {
+        const userId = localStorage.getItem('userId') || 'current_user';
+        
+        const response = await fetch('/api/queue', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                stand_name: standName
+            })
+        });
+
+        if (response.ok) {
+            alert(`Вы отменили запись на стенд "${standName}"`);
+            updateButtonState(standId, false);
+        } else {
+            alert('Ошибка при отмене записи');
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+    }
+}
+
+function updateButtonState(standId, isFollowing) {
+    const standElement = document.getElementById(`stand-${standId}`);
+    if (!standElement) return;
+    
+    const recordBtn = standElement.querySelector('.fly-button.recording');
+    const cancelBtn = standElement.querySelector('.fly-button.cancel');
+
+    if (isFollowing) {
+        recordBtn.style.display = 'none';
+        cancelBtn.style.display = 'block';
+    } else {
+        recordBtn.style.display = 'block';
+        cancelBtn.style.display = 'none';
+    }
+}
+
+// Загрузка стендов при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    loadStandsFromDB();
+});
