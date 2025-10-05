@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация | T-Двор</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_stand.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/LoginStyle.css') }}">
+    
+</head>
+<body>
+
+    <div class="top-fixed">
+        <div class="top-fixed-center">
+            <img src="{{ url_for('static', filename='svg/tbank_logo.svg') }}" class="top-fixed-logo" alt="Логотип">
+            <span class="top-fixed-title">T-Двор</span>
+        </div>
+    </div>
+
+    <div class="auth-container">
+        <h2>Вход в аккаунт</h2>
+        <form id="authForm">
+            <input id="username" name="username" type="text" placeholder="Имя пользователя" required>
+            <input id="password" name="password" type="password" placeholder="Пароль" required>
+            <button type="submit" class="login-btn">Войти</button>
+            <button type="button" class="register-btn">Регистрация</button>
+        </form>
+    </div>
+    <div id="message" class="hidden"></div>
+    <script src="{{ url_for('static', filename='js/AuthUser.js') }}"></script>
+</body>
+</html>

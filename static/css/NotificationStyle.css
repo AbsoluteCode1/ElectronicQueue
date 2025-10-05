@@ -1,0 +1,55 @@
+.notifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* больше пространства между строками */
+    padding: 16px;
+}
+
+/* Одна строка уведомления */
+.notification-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 12px; /* увеличенные отступы */
+    border-radius: 8px;
+    transition: background-color 0.5s ease, transform 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    min-height: 70px; /* увеличенная высота строки */
+}
+
+.notification-row:hover {
+    transform: translateY(-2px);
+}
+
+.notification-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-title {
+    font-size: 18px; /* больше заголовок */
+    font-weight: 700;
+    margin: 0 0 4px 0;
+}
+
+.notification-time {
+    font-size: 16px; /* увеличенный текст времени */
+    color: #222;
+    margin: 0;
+}
+
+/* Кнопка "Прочитано" */
+.mark-read-btn {
+    background: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px; /* больше кнопка */
+    font-size: 16px;   /* увеличенный текст */
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mark-read-btn:hover {
+    background: #ffeaea;
+    transform: scale(1.05);
+}

@@ -1,0 +1,151 @@
+body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Tinkoff Sans', sans-serif;
+            padding-top: 100px;
+            background: #f9f9f9;
+        }
+
+        .auth-container {
+            background: white;
+            padding: 40px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .auth-container h2 {
+            margin-bottom: 30px;
+            font-weight: 500;
+            font-size: 24px;
+            color: #222;
+        }
+
+        .auth-container input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            outline: none;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+
+        .auth-container input:focus {
+            border-color: #13824B;
+        }
+
+        .auth-container button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+
+        .auth-container .login-btn {
+            background: #13824B;
+            color: white;
+        }
+
+        .auth-container .login-btn:hover {
+            background: #0f6d3f;
+        }
+
+        .auth-container .register-btn {
+            background: #fde47d;
+            color: #222;
+        }
+
+        .auth-container .register-btn:hover {
+            background: #fcde30;
+        }
+
+        /* Верхняя панель в стиле главной страницы */
+        .top-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            padding: 10px 15px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+        }
+
+        .top-fixed-center {
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        } 
+
+        .top-fixed-logo {
+            height: 18px; 
+            margin-bottom: 4px; 
+        } 
+
+        .top-fixed-title {
+            font-size: 18px; 
+            font-weight: 500; 
+            color: #222; 
+        }
+
+@font-face {
+    font-family: 'Tinkoff Sans';
+    src: url('{{ url_for("static", filename="fonts/TinkoffSans-Bold.woff2") }}') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tinkoff Sans';
+    src: url('{{ url_for("static", filename="fonts/TinkoffSans-Medium.woff2") }}') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tinkoff Sans';
+    src: url('{{ url_for("static", filename="fonts/TinkoffSans-Regular.woff2") }}') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: 'Tinkoff Sans', sans-serif;
+}
+
+#message {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  display: none;
+  text-align: center;
+}
+
+#message.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+#message.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}

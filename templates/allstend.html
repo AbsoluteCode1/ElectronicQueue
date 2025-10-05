@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Двор</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_stand.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="top-fixed">
+        <a href="/profile" class="profile-btn left-btn">
+            <img src="{{ url_for('static', filename='svg/profile.svg') }}" alt="Профиль">
+        </a>
+
+        <div class="top-fixed-center">
+            <img src="{{ url_for('static', filename='svg/tbank_logo.svg') }}" class="top-fixed-logo" alt="Логотип">
+            <span class="top-fixed-title">T-Двор</span>
+            <div class="top-fixed-search">
+                <input type="text" id="searchInput" placeholder="Найди свой стенд..." class="top-fixed-input">
+            </div>
+        </div>
+
+        <a href="./Notification.html" class="profile-btn right-btn has-notifications" data-count="3">
+            <img src="{{ url_for('static', filename='svg/bell.svg')}}" alt="Уведомления">
+        </a>
+    </div>
+
+    <!-- Контейнер для стендов из БД -->
+    <div class="stands-container" id="standsContainer">
+        <!-- Стенды будут загружаться сюда через JavaScript -->
+        <div class="loading">Загрузка стендов...</div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script_stands_page.js') }}"></script>
+</body>
+</html>

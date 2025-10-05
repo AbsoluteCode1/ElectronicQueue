@@ -1,0 +1,279 @@
+@font-face {
+    font-family: 'Tinkoff Sans';
+    src: url('font/TinkoffSans-Bold.eot');
+    src: local('font/Tinkoff Sans Bold'), local('TinkoffSans-Bold'),
+        url('font/TinkoffSans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('font/TinkoffSans-Bold.woff2') format('woff2'),
+        url('font/TinkoffSans-Bold.woff') format('woff'),
+        url('font/TinkoffSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tinkoff Sans';
+    src: url('font/TinkoffSans-Medium.eot');
+    src: local('font/Tinkoff Sans Medium'), local('TinkoffSans-Medium'),
+        url('font/TinkoffSans-Medium.eot?#iefix') format('embedded-opentype'),
+        url('font/TinkoffSans-Medium.woff2') format('woff2'),
+        url('font/TinkoffSans-Medium.woff') format('woff'),
+        url('font/TinkoffSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tinkoff Sans';
+    src: url('font/TinkoffSans-Regular.eot');
+    src: local('font/Tinkoff Sans Regular'), local('TinkoffSans-Regular'),
+        url('font/TinkoffSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('font/TinkoffSans-Regular.woff2') format('woff2'),
+        url('font/TinkoffSans-Regular.woff') format('woff'),
+        url('font/TinkoffSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+html{
+    font-family: 'Tinkoff Sans', sans-serif;
+}
+body{
+    padding-top: 80px;
+}
+.stands-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(520px, 1fr)); 
+    gap: 20px;
+    width: 90%;
+    margin: 20px auto;
+}
+
+.stand {
+    background: linear-gradient(to bottom right,#fcde30, #fde47d);
+    border-radius: 8px;
+    padding: 60px;
+    min-height: 200px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.adaptive-image {
+    max-width: 40%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+.large-text {
+    font-size: clamp(18px, 3vw, 28px);
+    margin: 20px 0;
+}
+
+.fly-button {
+    position: absolute;
+    background: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: clamp(12px, 2vw, 18px);
+    transition: all 0.3s ease;
+}
+
+/* --- Записаться — выезжает слева --- */
+.recording {
+    color: #13824B;
+    top: 75%;
+    left: -100%;                /* спрятана слева */
+    transform: translateY(-50%);
+}
+.stand:hover .recording,
+.stand.active .recording {
+    left: 10px;                 /* при ховере/активе выезжает слева */
+}
+
+/* --- Отказаться — выезжает справа --- */
+.cancel {
+    color: #ec6161;             /* мягкий красный (можно заменить на #e57373 для более светлого) */
+    top: 75%;
+    right: -100%;               /* спрятана справа */
+    transform: translateY(-50%);
+}
+.stand:hover .cancel,
+.stand.active .cancel {
+    right: 10px;                /* при ховере/активе выезжает справа */
+}
+
+/* --- Отсканировать QR — выезжает снизу --- */
+.accepting {
+    color: #4682B4;
+    bottom: -100%;              /* спрятана снизу */
+    left: 50%;
+    transform: translateX(-50%);
+}
+.stand:hover .accepting,
+.stand.active .accepting {
+    bottom: 10px;               /* при ховере/активе поднимается снизу */
+}
+
+/* --- Эффект наведения на карточку --- */
+.stand:hover {
+    transform: translateY(-5px);
+}
+.stand.active {
+    transform: translateY(-5px);
+}
+
+.stand-description {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+    text-align: center;
+    line-height: 1.4;
+}
+
+/*Заголовок окна*/
+.top-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    background: rgba(255,255,255,0.85);
+    padding: 8px 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+    display: flex;
+    justify-content: center; /* центрируем блок */
+}
+
+.top-fixed-center { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+} 
+.top-fixed-logo { 
+    height: 18px; 
+    margin-bottom: 4px; 
+    margin-right: 20px; 
+} 
+
+.top-fixed-title { 
+    font-size: 18px; 
+    font-weight: 500; 
+    color: #222; 
+    margin-bottom: 6px; 
+    margin-right: 20px; 
+} 
+.top-fixed-search { 
+    width: 200px; 
+} 
+.top-fixed-input { 
+    width: 100%; 
+    padding: 6px 10px; 
+    font-size: 13px; 
+    border: 1px solid #ccc; 
+    border-radius: 6px; 
+    outline: none; 
+    font-family: inherit; 
+}
+
+/* Базовый стиль кнопки */
+.profile-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+}
+
+/* Иконка внутри кнопки */
+.profile-btn img {
+    width: 26px;
+    height: 26px;
+    z-index: 1;
+}
+
+/* Ховер‑эффект */
+.profile-btn:hover {
+    transform: translateY(-50%) scale(1.15);
+}
+
+/* Левый край */
+.left-btn {
+    left: 30px;
+}
+
+/* Правый край */
+.right-btn {
+    right: 50px;
+}
+
+/* Бейджик уведомлений */
+.right-btn::after {
+    content: attr(data-count);
+    position: absolute;
+    top: -4px;
+    right: -4px;
+
+    width: 18px;   /* фиксированный размер */
+    height: 18px;
+    line-height: 18px;
+
+    background: #ec6161;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 50%;
+    text-align: center;
+
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    z-index: 2;
+}
+.right-btn[data-count="0"]::after,
+.right-btn:not([data-count])::after {
+    display: none;
+}
+
+/* Анимация тряски */
+@keyframes bell-shake {
+    0%   { transform: translateY(0%) rotate(0deg); }
+    15%  { transform: translateY(0%) rotate(-15deg); }
+    30%  { transform: translateY(0%) rotate(15deg); }
+    45%  { transform: translateY(0%) rotate(-10deg); }
+    60%  { transform: translateY(0%) rotate(10deg); }
+    75%  { transform: translateY(0%) rotate(-5deg); }
+    100% { transform: translateY(0%) rotate(0deg); }
+}
+
+.right-btn.has-notifications img {
+    animation: bell-shake 1s ease-in-out infinite;
+    transform-origin: top center;
+}
+
+.right-btn[data-count="0"] img {
+    animation: none;
+}
+
+/* Тряска только если есть уведомления */
+.has-notifications img {
+    animation: bell-shake 1s ease-in-out infinite;
+    transform-origin: top center;
+}

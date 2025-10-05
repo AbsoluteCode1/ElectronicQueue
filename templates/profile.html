@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_stand.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ProfileStyle.css') }}">
+</head>
+<body>
+    <div class="top-fixed">
+        <a href="/allstend" class="profile-btn left-btn">
+            <img src="{{ url_for('static', filename='svg/ArrowBack.svg') }}" alt="Назад">
+        </a>
+
+        <div class="top-fixed-center">
+            <img src="{{ url_for('static', filename='svg/tbank_logo.svg') }}" alt="Логотип" class="top-fixed-logo">
+            <span class="top-fixed-title">Личный кабинет</span>
+        </div>
+        
+        <a href="./Notification.html" class="profile-btn right-btn has-notifications" data-count="3">
+            <img src="{{ url_for('static', filename='svg/bell.svg') }}" alt="Уведомления">
+        </a>
+    </div>
+
+    <!-- ===== Контент ===== -->
+    <div class="cabinet-container">
+        <h2>Стенды, которые предстоит посетить:</h2>
+        <div class="stand-list" id="userQueueList">
+            <!-- Стенды будут загружаться здесь через JavaScript -->
+            <div class="loading">Загрузка ваших стендов...</div>
+        </div>
+    </div>
+
+    <!-- ПОДКЛЮЧЕНИЕ JavaScript -->
+    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+</body>
+</html>
